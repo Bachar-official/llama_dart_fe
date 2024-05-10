@@ -1,7 +1,6 @@
 class Urls {
-  static const baseUrl = 'http://localhost:7860';
-  static const baseWsUrl = 'ws://localhost:7860';
-  static const uploadUrl = '$baseUrl/upload';
-  static const predictUrl = '$baseUrl/run/predict';
-  static const queueUrl = '$baseWsUrl/queue/join';
+  static const baseUrl = 'http://localhost:1993';
+  static const resourcesUrl = '$baseUrl/resources';
+  static const resourceUrl = '$baseUrl/resource';
+  static const restartUrl = '$baseUrl/restart';
 }

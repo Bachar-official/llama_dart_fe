@@ -1,0 +1,2 @@
+const beginSymbol = '␛';
+const endSymbol = '␌';
