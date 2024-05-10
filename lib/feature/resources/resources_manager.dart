@@ -1,3 +1,4 @@
+import 'package:ask_titmouse/app/routing.dart';
 import 'package:ask_titmouse/entity/manager_deps.dart';
 import 'package:ask_titmouse/entity/resource.dart';
 import 'package:ask_titmouse/entity/snackbar_reason.dart';
@@ -16,6 +17,10 @@ class ResourcesManager {
   }
 
   void setLoading(bool isLoading) => holder.setLoading(isLoading);
+
+  Future<void> goToNewResource() async {
+    await deps.navKey.currentState!.pushNamed(AppRouter.createResourcePage);
+  }
 
   Future<void> getResources() async {
     deps.logger.d('Getting all resources');
@@ -90,6 +95,7 @@ class ResourcesManager {
       var res = await netRepo.createResource(resource);
       if (res) {
         getResources();
+        deps.navKey.currentState!.popAndPushNamed(AppRouter.resourcesPage);
       } else {
         showSnackBar(
             deps: deps,
@@ -102,6 +108,33 @@ class ResourcesManager {
           deps: deps,
           reason: SnackBarReason.error,
           message: 'Ошибка при создании ресурса: $e');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  Future<void> restartModel() async {
+    deps.logger.d('Tring to restart model');
+    try {
+      setLoading(true);
+      var res = await netRepo.restartModel();
+      if (res) {
+        showSnackBar(
+            deps: deps,
+            reason: SnackBarReason.success,
+            message: 'Модель перезапущена!');
+      } else {
+        showSnackBar(
+            deps: deps,
+            reason: SnackBarReason.warning,
+            message: 'Что-то пошло не так');
+      }
+    } catch (e) {
+      deps.logger.e('Error while restarting model: $e');
+      showSnackBar(
+          deps: deps,
+          reason: SnackBarReason.error,
+          message: 'Ошибка при перезапуске модели: $e');
     } finally {
       setLoading(false);
     }

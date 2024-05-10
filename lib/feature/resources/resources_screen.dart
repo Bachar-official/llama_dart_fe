@@ -2,6 +2,7 @@ import 'package:ask_titmouse/app/di.dart';
 import 'package:ask_titmouse/feature/resources/components/resource_card.dart';
 import 'package:ask_titmouse/feature/resources/resource_state.dart';
 import 'package:ask_titmouse/feature/resources/resources_holder.dart';
+import 'package:ask_titmouse/ui/containers/loading_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -22,14 +23,29 @@ class ResourcesScreen extends ConsumerWidget {
           IconButton(
             icon: const Icon(Icons.refresh),
             onPressed: manager.getResources,
+            tooltip: 'Обновить',
+          ),
+          IconButton(
+            onPressed: manager.restartModel,
+            icon: const Icon(Icons.restart_alt),
+            tooltip: 'Перезапустить модель',
           ),
         ],
       ),
-      body: ListView.builder(
-          itemCount: state.resources.length,
-          itemBuilder: (ctx, index) => ResourceCard(
-              resource: state.resources[index],
-              onDeleteResource: manager.removeResource)),
+      body: state.isLoading
+          ? const Center(
+              child: LoadingCard(),
+            )
+          : ListView.builder(
+              itemCount: state.resources.length,
+              itemBuilder: (ctx, index) => ResourceCard(
+                  resource: state.resources[index],
+                  onDeleteResource: manager.removeResource),
+            ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: manager.goToNewResource,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

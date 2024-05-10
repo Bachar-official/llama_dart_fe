@@ -1,6 +1,7 @@
 import 'package:ask_titmouse/entity/manager_deps.dart';
 import 'package:ask_titmouse/feature/chat/chat_holder.dart';
 import 'package:ask_titmouse/feature/chat/chat_manager.dart';
+import 'package:ask_titmouse/feature/create_resource/create_resource_manager.dart';
 import 'package:ask_titmouse/feature/resources/resources_holder.dart';
 import 'package:ask_titmouse/feature/resources/resources_manager.dart';
 import 'package:ask_titmouse/repo/net_repo.dart';
@@ -21,6 +22,7 @@ class DI {
   late final NetRepo netRepo;
   late final ChatManager chatManager;
   late final ResourcesManager resourcesManager;
+  late final CreateResourceManager createResourceManager;
 
   Future<void> init() async {
     deps.logger.d('Initializing DI');
@@ -28,6 +30,8 @@ class DI {
     chatManager = ChatManager(deps: deps, netRepo: netRepo, holder: chatHolder);
     resourcesManager =
         ResourcesManager(deps: deps, netRepo: netRepo, holder: resourcesHolder);
+    createResourceManager = CreateResourceManager(
+        deps: deps, netRepo: netRepo, resourcesManager: resourcesManager);
     deps.logger.i('DI initialized');
   }
 }

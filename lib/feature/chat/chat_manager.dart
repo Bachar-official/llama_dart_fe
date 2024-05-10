@@ -30,7 +30,6 @@ class ChatManager {
       deps.logger.d('Connecting to WebSocket');
       holder.setChatStream(netRepo.chatStream);
       await for (final msg in netRepo.chatStream) {
-        stdout.write(msg);
         if (msg == beginSymbol) {
           receiveMessage();
         } else {
