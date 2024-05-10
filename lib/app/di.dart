@@ -25,8 +25,9 @@ class DI {
   Future<void> init() async {
     deps.logger.d('Initializing DI');
     netRepo = NetRepo(dio: dio);
-    chatManager = ChatManager(deps: deps, netRepo: netRepo);
-    resourcesManager = ResourcesManager(deps: deps, netRepo: netRepo);
+    chatManager = ChatManager(deps: deps, netRepo: netRepo, holder: chatHolder);
+    resourcesManager =
+        ResourcesManager(deps: deps, netRepo: netRepo, holder: resourcesHolder);
     deps.logger.i('DI initialized');
   }
 }
