@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:ask_titmouse/app/routing.dart';
 import 'package:ask_titmouse/const/symbols.dart';
 import 'package:ask_titmouse/entity/manager_deps.dart';

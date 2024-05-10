@@ -4,6 +4,7 @@ import 'package:ask_titmouse/feature/chat/chat_manager.dart';
 import 'package:ask_titmouse/feature/create_resource/create_resource_manager.dart';
 import 'package:ask_titmouse/feature/resources/resources_holder.dart';
 import 'package:ask_titmouse/feature/resources/resources_manager.dart';
+import 'package:ask_titmouse/feature/update_resource/update_resource_manager.dart';
 import 'package:ask_titmouse/repo/net_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -23,14 +24,24 @@ class DI {
   late final ChatManager chatManager;
   late final ResourcesManager resourcesManager;
   late final CreateResourceManager createResourceManager;
+  late final UpdateResourceManager updateResourceManager;
 
   Future<void> init() async {
     deps.logger.d('Initializing DI');
     netRepo = NetRepo(dio: dio);
+
     chatManager = ChatManager(deps: deps, netRepo: netRepo, holder: chatHolder);
-    resourcesManager =
-        ResourcesManager(deps: deps, netRepo: netRepo, holder: resourcesHolder);
+    resourcesManager = ResourcesManager(
+      deps: deps,
+      netRepo: netRepo,
+      holder: resourcesHolder,
+    );
     createResourceManager = CreateResourceManager(
+      deps: deps,
+      netRepo: netRepo,
+      resourcesManager: resourcesManager,
+    );
+    updateResourceManager = UpdateResourceManager(
         deps: deps, netRepo: netRepo, resourcesManager: resourcesManager);
     deps.logger.i('DI initialized');
   }

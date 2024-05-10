@@ -10,8 +10,8 @@ class Validators {
     if (value == null || value.isEmpty) {
       return 'Поле обязательно для заполнения';
     }
-    RegExp exp =
-        RegExp(r'(?:(?:https?|ftp|mailto):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
+    RegExp exp = RegExp(
+        r'(?:(?:https?|ftp|mailto|smb):\/\/)?[\w/\-?=%.]+\.[\w/\-?=%.]+');
     if (!exp.hasMatch(value)) {
       return 'Неправильный формат поля';
     }

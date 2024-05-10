@@ -1,6 +1,7 @@
 import 'package:ask_titmouse/feature/chat/chat_screen.dart';
 import 'package:ask_titmouse/feature/create_resource/create_resource_screen.dart';
 import 'package:ask_titmouse/feature/resources/resources_screen.dart';
+import 'package:ask_titmouse/feature/update_resource/update_resource_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -17,6 +18,8 @@ class AppRouter {
         return _buildRoute((context) => const ResourcesScreen(), settings);
       case createResourcePage:
         return _buildRoute((context) => const CreateResourceScreen(), settings);
+      case editResourcePage:
+        return _buildRoute((context) => const UpdateResourceScreen(), settings);
       default:
         throw Exception('Invalid route: ${settings.name}');
     }

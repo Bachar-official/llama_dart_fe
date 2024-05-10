@@ -11,8 +11,11 @@ class ResourcesManager {
   final NetRepo netRepo;
   final ResourcesHolder holder;
 
-  ResourcesManager(
-      {required this.deps, required this.netRepo, required this.holder}) {
+  ResourcesManager({
+    required this.deps,
+    required this.netRepo,
+    required this.holder,
+  }) {
     getResources();
   }
 
@@ -20,6 +23,11 @@ class ResourcesManager {
 
   Future<void> goToNewResource() async {
     await deps.navKey.currentState!.pushNamed(AppRouter.createResourcePage);
+  }
+
+  Future<void> goToEditResource(Resource resource) async {
+    await deps.navKey.currentState!
+        .pushNamed(AppRouter.editResourcePage, arguments: resource);
   }
 
   Future<void> getResources() async {
@@ -71,6 +79,7 @@ class ResourcesManager {
       var res = await netRepo.updateResource(resource);
       if (res) {
         getResources();
+        deps.navKey.currentState!.popAndPushNamed(AppRouter.resourcesPage);
       } else {
         showSnackBar(
             deps: deps,

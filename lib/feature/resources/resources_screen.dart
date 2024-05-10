@@ -39,6 +39,7 @@ class ResourcesScreen extends ConsumerWidget {
           : ListView.builder(
               itemCount: state.resources.length,
               itemBuilder: (ctx, index) => ResourceCard(
+                  onTap: manager.goToEditResource,
                   resource: state.resources[index],
                   onDeleteResource: manager.removeResource),
             ),
