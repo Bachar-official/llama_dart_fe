@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:ask_titmouse/app/routing.dart';
 import 'package:ask_titmouse/const/symbols.dart';
 import 'package:ask_titmouse/entity/manager_deps.dart';
 import 'package:ask_titmouse/entity/message.dart';
@@ -68,5 +69,9 @@ class ChatManager {
     holder.setMessages([...holder.oState.messages, message]);
     netRepo.sendMessage(messageC.text);
     messageC.clear();
+  }
+
+  Future<void> goToResPage() async {
+    await deps.navKey.currentState!.pushNamed(AppRouter.resourcesPage);
   }
 }

@@ -18,6 +18,12 @@ class ChatScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Спроси Синичку'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: manager.goToResPage,
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
