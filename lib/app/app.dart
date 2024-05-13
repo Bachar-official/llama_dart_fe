@@ -14,7 +14,7 @@ class App extends StatelessWidget {
       title: 'Спроси Синичку',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFED8B00), primary: const Color(0xFF003C71), secondary: const Color(0xFF2C2A29),),
         useMaterial3: true,
       ),
     );

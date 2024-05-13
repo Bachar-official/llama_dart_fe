@@ -28,6 +28,7 @@ class UpdateResourceScreen extends StatelessWidget {
                   children: [
                     TextFormField(
                       controller: manager.nameC,
+                      maxLines: 1,
                       validator: Validators.validateNull,
                       decoration: InputDecoration(
                         labelText: 'Название',
@@ -39,6 +40,7 @@ class UpdateResourceScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       controller: manager.synonymC,
+                      maxLines: 1,
                       decoration: InputDecoration(
                         labelText: 'Синонимы',
                         suffixIcon: IconButton(
@@ -49,6 +51,7 @@ class UpdateResourceScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       controller: manager.urlC,
+                      maxLines: 1,
                       validator: Validators.validateUrl,
                       decoration: InputDecoration(
                         labelText: 'Ссылка',
@@ -60,6 +63,7 @@ class UpdateResourceScreen extends StatelessWidget {
                     ),
                     TextFormField(
                       controller: manager.descriptionC,
+                      maxLines: 10,
                       validator: Validators.validateNull,
                       decoration: InputDecoration(
                         labelText: 'Описание',

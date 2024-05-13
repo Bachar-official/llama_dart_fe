@@ -53,6 +53,7 @@ class CreateResourceScreen extends StatelessWidget {
               ),
               TextFormField(
                 controller: manager.descriptionC,
+                maxLines: 10,
                 validator: Validators.validateNull,
                 decoration: InputDecoration(
                   labelText: 'Описание',

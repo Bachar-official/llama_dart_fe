@@ -42,9 +42,9 @@ class ResourcesScreen extends ConsumerWidget {
                   resource: state.resources[index],
                   onDeleteResource: manager.removeResource),
             ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: ElevatedButton(
         onPressed: manager.goToNewResource,
-        child: const Icon(Icons.add),
+        child: const Text('Добавить ресурс'),
       ),
     );
   }
