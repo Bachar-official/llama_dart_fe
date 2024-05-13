@@ -1,3 +1,4 @@
+import 'package:ask_titmouse/app/routing.dart';
 import 'package:ask_titmouse/entity/manager_deps.dart';
 import 'package:ask_titmouse/entity/resource.dart';
 import 'package:ask_titmouse/feature/resources/resources_manager.dart';
@@ -41,6 +42,8 @@ class UpdateResourceManager {
   void clearUrl() => urlC.clear();
   void clearDescription() => descriptionC.clear();
   void clearSynonym() => synonymC.clear();
+
+  Future<void> goBack() async => await deps.navKey.currentState!.pushReplacementNamed(AppRouter.resourcesPage);
 
   Future<void> updateResource() async {
     if (formKey.currentState!.validate()) {

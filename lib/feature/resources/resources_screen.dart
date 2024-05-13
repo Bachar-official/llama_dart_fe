@@ -19,16 +19,15 @@ class ResourcesScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ресурсы'),
+        leading: IconButton(onPressed: manager.goBack, icon: const Icon(Icons.arrow_back),),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
+          TextButton(
             onPressed: manager.getResources,
-            tooltip: 'Обновить',
+            child: const Text('Обновить'),
           ),
-          IconButton(
+          TextButton(
             onPressed: manager.restartModel,
-            icon: const Icon(Icons.restart_alt),
-            tooltip: 'Перезапустить модель',
+            child: const Text('Перезапустить модель'),
           ),
         ],
       ),

@@ -70,9 +70,18 @@ class UpdateResourceScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-                    ElevatedButton(
-                      onPressed: manager.updateResource,
-                      child: const Text('Редактировать'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        ElevatedButton(
+                          onPressed: manager.updateResource,
+                          child: const Text('Редактировать'),
+                        ),
+                        ElevatedButton(
+                          onPressed: manager.goBack,
+                          child: const Text('Назад'),
+                        ),
+                      ],
                     ),
                     const Spacer(),
                   ],

@@ -69,6 +69,6 @@ class ChatManager {
   }
 
   Future<void> goToResPage() async {
-    await deps.navKey.currentState!.pushNamed(AppRouter.resourcesPage);
+    await deps.navKey.currentState!.pushReplacementNamed(AppRouter.resourcesPage);
   }
 }

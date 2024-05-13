@@ -63,10 +63,20 @@ class CreateResourceScreen extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              ElevatedButton(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
                 onPressed: manager.createResource,
                 child: const Text('Создать'),
               ),
+              ElevatedButton(
+                onPressed: manager.goBack,
+                child: const Text('Отмена'),
+              ),
+                ],
+              ),
+              
               const Spacer(),
             ],
           ),

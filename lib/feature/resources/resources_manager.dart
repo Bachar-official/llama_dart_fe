@@ -22,12 +22,16 @@ class ResourcesManager {
   void setLoading(bool isLoading) => holder.setLoading(isLoading);
 
   Future<void> goToNewResource() async {
-    await deps.navKey.currentState!.pushNamed(AppRouter.createResourcePage);
+    await deps.navKey.currentState!.pushReplacementNamed(AppRouter.createResourcePage);
+  }
+
+  Future<void> goBack() async {
+    await deps.navKey.currentState!.pushReplacementNamed(AppRouter.chatPage);
   }
 
   Future<void> goToEditResource(Resource resource) async {
     await deps.navKey.currentState!
-        .pushNamed(AppRouter.editResourcePage, arguments: resource);
+        .pushReplacementNamed(AppRouter.editResourcePage, arguments: resource);
   }
 
   Future<void> getResources() async {
@@ -79,7 +83,7 @@ class ResourcesManager {
       var res = await netRepo.updateResource(resource);
       if (res) {
         getResources();
-        deps.navKey.currentState!.popAndPushNamed(AppRouter.resourcesPage);
+        deps.navKey.currentState!.pushReplacementNamed(AppRouter.resourcesPage);
       } else {
         showSnackBar(
             deps: deps,
@@ -104,7 +108,7 @@ class ResourcesManager {
       var res = await netRepo.createResource(resource);
       if (res) {
         getResources();
-        deps.navKey.currentState!.popAndPushNamed(AppRouter.resourcesPage);
+        deps.navKey.currentState!.pushReplacementNamed(AppRouter.resourcesPage);
       } else {
         showSnackBar(
             deps: deps,

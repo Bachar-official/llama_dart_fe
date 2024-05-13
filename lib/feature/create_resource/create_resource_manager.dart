@@ -1,3 +1,4 @@
+import 'package:ask_titmouse/app/routing.dart';
 import 'package:ask_titmouse/entity/manager_deps.dart';
 import 'package:ask_titmouse/entity/resource.dart';
 import 'package:ask_titmouse/feature/resources/resources_manager.dart';
@@ -24,18 +25,20 @@ class CreateResourceManager {
   void clearDescription() => descriptionC.clear();
   void clearSynonym() => synonymC.clear();
 
+  Future<void> goBack() async => await deps.navKey.currentState!.pushReplacementNamed(AppRouter.resourcesPage);
+
   Future<void> createResource() async {
     if (formKey.currentState!.validate()) {
       var newResource = Resource(
           name: nameC.text,
           url: urlC.text,
           description: descriptionC.text,
-          synonym: synonymC.text);
+          synonym: synonymC.text);      
+      await resourcesManager.createResource(newResource);
       nameC.clear();
       urlC.clear();
       descriptionC.clear();
       synonymC.clear();
-      await resourcesManager.createResource(newResource);
     }
   }
 }
