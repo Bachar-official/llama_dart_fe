@@ -20,7 +20,9 @@ class MessageCard extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
         decoration: BoxDecoration(
-          color: message.sentByMe ? Colors.blue : Colors.grey,
+          color: message.sentByMe
+              ? const Color(0xFF003C71)
+              : const Color(0xFFED8B00),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: message.text == ''
@@ -29,6 +31,7 @@ class MessageCard extends StatelessWidget {
                 child: LoadingCard(),
               )
             : Linkify(
+                options: const LinkifyOptions(humanize: false),
                 text: message.text,
                 onOpen: (link) {
                   if (kIsWeb) {
